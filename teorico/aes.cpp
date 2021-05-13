@@ -35,7 +35,7 @@ std::string aes::aesencrypt(std::string plaintext) {
     CryptoPP::AES::Encryption aesEncryption(key, CryptoPP::AES::DEFAULT_KEYLENGTH);//primero forma de encriptar, simetrica -> aes
     CryptoPP::CBC_Mode_ExternalCipher::Encryption cbcEncryption(aesEncryption, iv);//forma de encriptar los bloques -> cbc
 
-    CryptoPP::StreamTransformationFilter stfEncryptor(cbcEncryption, new CryptoPP::StringSink(ciphertext));//padding de bloques
+    CryptoPP::StreamTransformationFilter stfEncryptor(cbcEncryption, new CryptoPP::StringSink(ciphertext));//padding de bloques 
     stfEncryptor.Put(reinterpret_cast<const unsigned char*>(plaintext.c_str()), plaintext.length());//inserto el contenido
     stfEncryptor.MessageEnd();
 
